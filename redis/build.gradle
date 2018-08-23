@@ -1,0 +1,15 @@
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    // SpringBoot整合Redis
+    compile('org.springframework.boot:spring-boot-starter-data-redis')
+    // spring-boot-jpa
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+
+    // 用Redis缓存Session，实现Session共享
+    compile('org.springframework.session:spring-session-data-redis')
+
+    // mysql
+    compile('mysql:mysql-connector-java:8.0.11')
+    // Jackson
+    compile('com.fasterxml.jackson.core:jackson-databind:2.9.6')
+}

@@ -1,0 +1,9 @@
+rootProject.name = 'spring-boot-demo'
+
+//include 'helloworld'
+//findProject(':helloworld')?.name = 'spring-boot-helloworld'
+//include 'web'
+//findProject(':web')?.name = 'spring-boot-web'
+include 'redis'
+findProject(':redis')?.name = 'spring-boot-redis'
+

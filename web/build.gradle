@@ -1,0 +1,8 @@
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+
+    // spring-boot-jpa
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    // mysql
+    compile('mysql:mysql-connector-java:8.0.11')
+}

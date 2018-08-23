@@ -1,0 +1,70 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.4.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+// 项目本身所需
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'	//添加 Spring-boot支持
+    apply plugin: 'io.spring.dependency-management'
+    configurations {
+        all*.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+        all*.exclude group: 'org.springframework', module: 'spring'
+        all { resolutionStrategy.cacheChangingModulesFor 1, 'minutes' }
+    }
+
+    repositories {
+        /*
+        maven {
+			url "http://nexus.test-inc.com/nexus/content/groups/ProductGroup"
+		}
+		*/
+        mavenCentral()
+    }
+
+    idea {
+        module {
+            excludeDirs = []
+            [".idea", ".gradle", '.settings', 'build', 'classes'].each {
+                excludeDirs << file("$it")
+            }
+        }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        options.debug = "on"
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    tasks.withType(Javadoc) {
+        options.encoding = "UTF-8"
+        options.charSet = "UTF-8"
+    }
+
+    task cleanAll << {
+        println "Clean project.."
+        delete buildDir
+    }
+
+    task initSourceFolders {
+        sourceSets*.java.srcDirs*.each { it.mkdirs() }
+        sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+    }
+
+    // 公用依赖
+    dependencies {
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+    }
+}
+

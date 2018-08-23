@@ -1,0 +1,11 @@
+# 视图模板缓存（开发环境设置为 false 禁止，正式环境设置为 true 开启）
+spring:
+  freemarker:
+    cache: false
+  thymeleaf:
+    cache: false
+  groovy:
+    template:
+      cache: false
+
+
