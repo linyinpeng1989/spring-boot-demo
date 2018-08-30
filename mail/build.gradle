@@ -1,0 +1,6 @@
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-mail')
+
+    /* 使用Thymeleaf模板创建邮件正文 */
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+}
