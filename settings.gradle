@@ -16,7 +16,9 @@ rootProject.name = 'spring-boot-demo'
 //findProject(':mybatis-xml')?.name = 'spring-boot-mybatis-xml'
 //include 'mybatis-annotation-mulidatasource'
 //findProject(':mybatis-annotation-mulidatasource')?.name = 'spring-boot-mybatis-annotation-mulidatasource'
-include 'mybatis-xml-mulidatasource'
-findProject(':mybatis-xml-mulidatasource')?.name = 'spring-boot-mybatis-xml-mulidatasource'
+//include 'mybatis-xml-mulidatasource'
+//findProject(':mybatis-xml-mulidatasource')?.name = 'spring-boot-mybatis-xml-mulidatasource'
+include 'rabbitmq'
+findProject(':rabbitmq')?.name = 'spring-boot-rabbitmq'
 
 
