@@ -24,25 +24,29 @@ public class MultipleMongoConfig {
     @Bean(name = PrimaryMongoConfig.MONGO_TEMPLATE)
     @Primary    // 使用多数据源过程中，必须指定主库
     public MongoTemplate primaryMongoTemplate() {
-        MongoTemplate template = new MongoTemplate(this.primaryFactory(mongoProperties.getPrimary()));
+        MongoTemplate template = new MongoTemplate(this.mongoDbFactory(mongoProperties.getPrimary()));
         return template;
     }
 
     @Bean(name = SecondaryMongoConfig.MONGO_TEMPLATE)
     public MongoTemplate secondaryMongoTemplate() {
-        MongoTemplate template = new MongoTemplate(this.secondaryFactory(mongoProperties.getSecondary()));
+        MongoTemplate template = new MongoTemplate(this.mongoDbFactory(mongoProperties.getSecondary()));
         return template;
     }
 
-    @Bean
-    @Primary
-    public MongoDbFactory primaryFactory(MongoProperties mongoProperties) {
+    private MongoDbFactory mongoDbFactory(MongoProperties mongoProperties) {
         return new SimpleMongoDbFactory(new MongoClientURI(mongoProperties.getUri()));
     }
 
-    @Bean
-    public MongoDbFactory secondaryFactory(MongoProperties mongoProperties) {
-        return new SimpleMongoDbFactory(new MongoClientURI(mongoProperties.getUri()));
-    }
+    // @Bean
+    // @Primary
+    // public MongoDbFactory primaryFactory(MongoProperties mongoProperties) {
+    //     return new SimpleMongoDbFactory(new MongoClientURI(mongoProperties.getUri()));
+    // }
+    //
+    // @Bean
+    // public MongoDbFactory secondaryFactory(MongoProperties mongoProperties) {
+    //     return new SimpleMongoDbFactory(new MongoClientURI(mongoProperties.getUri()));
+    // }
 
 }

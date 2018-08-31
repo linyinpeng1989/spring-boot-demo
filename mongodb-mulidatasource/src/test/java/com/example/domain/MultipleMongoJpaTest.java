@@ -27,13 +27,13 @@ public class MultipleMongoJpaTest {
     @Test
     public void testSave() throws Exception {
         UserEntity user = new UserEntity();
-        user.setId(5L);
+        user.setId(6L);
         user.setUserName("小红");
         user.setPassword("fffooo123");
         userRepository.save(user);
 
         Student student = new Student();
-        student.setId(2L);
+        student.setId(3L);
         student.setName("小红");
         studentRepository.save(student);
     }
