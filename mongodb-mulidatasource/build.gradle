@@ -1,0 +1,6 @@
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+
+    /* 自动化配置 */
+    compile('org.springframework.boot:spring-boot-autoconfigure')
+}
