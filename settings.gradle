@@ -26,6 +26,6 @@ rootProject.name = 'spring-boot-demo'
 //findProject(':mail')?.name = 'spring-boot-mail'
 //include 'mongodb'
 //findProject(':mongodb')?.name = 'spring-boot-mongodb'
-include 'mongodb-mulidatasource'
-findProject(':mongodb-mulidatasource')?.name = 'spring-boot-mongodb-mulidatasource'
+//include 'mongodb-mulidatasource'
+//findProject(':mongodb-mulidatasource')?.name = 'spring-boot-mongodb-mulidatasource'
 
