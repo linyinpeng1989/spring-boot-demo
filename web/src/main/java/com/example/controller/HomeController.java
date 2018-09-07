@@ -5,6 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+
 /**
  * @author: Yinpeng.Lin
  * @desc:
@@ -14,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
     @Autowired
     private PropertiesBean propertiesBean;
+    @Resource(name = "myCachedThreadPool")
+    private ExecutorService executorService;
 
     /**
      * 获取自定义属性
@@ -31,6 +38,21 @@ public class HomeController {
     @GetMapping("/user")
     public SimpleUser user() {
         return new SimpleUser(18, "小李子");
+    }
+
+    /**
+     * 线程池测试
+     * @return
+     * @throws ExecutionException
+     * @throws InterruptedException
+     */
+    @GetMapping("/threadPool")
+    public SimpleUser threadPoolTest() throws ExecutionException, InterruptedException {
+        Future<?> future1 = executorService.submit(() -> System.out.println("执行runnable任务，无返回值"));
+        System.out.println(future1.get());
+
+        Future<SimpleUser> future3 = executorService.submit(() -> new SimpleUser(20, "小贵子"));
+        return future3.get();
     }
 
     public static class SimpleUser {
