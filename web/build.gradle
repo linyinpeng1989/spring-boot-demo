@@ -1,8 +1,9 @@
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
-
-    // spring-boot-jpa
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    // mysql
+    /* MySQL */
     compile('mysql:mysql-connector-java:8.0.11')
+    /* Google Guava */
+    compile('com.google.guava:guava:26.0-jre')
+
 }
