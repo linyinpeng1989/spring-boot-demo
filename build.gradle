@@ -65,6 +65,7 @@ allprojects {
     // 公用依赖
     dependencies {
         testCompile('org.springframework.boot:spring-boot-starter-test')
+        compile('org.projectlombok:lombok:1.16.22')
     }
 }
 
