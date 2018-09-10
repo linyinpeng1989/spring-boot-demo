@@ -65,7 +65,15 @@ allprojects {
     // 公用依赖
     dependencies {
         testCompile('org.springframework.boot:spring-boot-starter-test')
+
+        /* Lombok */
         compile('org.projectlombok:lombok:1.16.22')
+
+        /*
+            SpringBoot热部署支持，开启方法见下面链接
+            https://www.cnblogs.com/sprinkle/p/7058630.html
+         */
+        compile('org.springframework.boot:spring-boot-devtools:2.0.4.RELEASE')
     }
 }
 
