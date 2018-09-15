@@ -35,6 +35,7 @@ public class KafkaReceiver {
             String value = record.value();
             log.info("----------------------- json message = {}", value);
 
+            // Gson解析
             JsonObject jsonObject = new JsonParser().parse(value).getAsJsonObject();
             System.out.println("===============================" + jsonObject);
         }

@@ -37,6 +37,7 @@ public class KafkaSender {
     }
 
     public void sendJson() {
+        // FastJson
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("tenantId", "tenantId_" + UUID.randomUUID().toString());
         jsonObject.put("fileId", "fileId_" + UUID.randomUUID().toString());
