@@ -1,5 +1,7 @@
 package com.example.consumer;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -23,6 +25,18 @@ public class KafkaReceiver {
             Object message = kafkaMessage.get();
             log.info("----------------------- record = {}", record);
             log.info("----------------------- message = {}", message);
+        }
+    }
+
+
+    @KafkaListener(topics = {"mapTopic"})
+    public void listenJson(ConsumerRecord<String, String> record) {
+        if (record != null) {
+            String value = record.value();
+            log.info("----------------------- json message = {}", value);
+
+            JsonObject jsonObject = new JsonParser().parse(value).getAsJsonObject();
+            System.out.println("===============================" + jsonObject);
         }
     }
 }

@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
-
 /**
  * @author: Yinpeng.Lin
  * @desc:
@@ -21,9 +19,19 @@ public class KafkaSenderTest {
     private KafkaSender kafkaSender;
 
     @Test
-    public void send() {
-        for (int i = 0; i < 10; i++) {
+    public void send() throws InterruptedException {
+        for (int i = 0; i < 2; i++) {
             kafkaSender.send();
+            Thread.sleep(100);
+        }
+    }
+
+
+    @Test
+    public void sendJson() throws InterruptedException {
+        for (int i = 0; i < 2; i++) {
+            kafkaSender.sendJson();
+            Thread.sleep(100);
         }
     }
 }

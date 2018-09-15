@@ -1,7 +1,6 @@
 package com.example.provider;
-import java.util.Date;
-import java.util.UUID;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.domain.Message;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -9,6 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * @author: Yinpeng.Lin
@@ -20,7 +22,7 @@ import org.springframework.stereotype.Component;
 public class KafkaSender {
 
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
     private Gson gson = new GsonBuilder().create();
 
@@ -32,6 +34,13 @@ public class KafkaSender {
         log.info("++++++++++++++++++++++++++++++++++ message = {}", gson.toJson(message));
 
         kafkaTemplate.send("testTopic", gson.toJson(message));
+    }
+
+    public void sendJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("tenantId", "tenantId_" + UUID.randomUUID().toString());
+        jsonObject.put("fileId", "fileId_" + UUID.randomUUID().toString());
+        kafkaTemplate.send("mapTopic", jsonObject.toString());
     }
 
 }
